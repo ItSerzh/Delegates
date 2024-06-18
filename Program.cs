@@ -1,4 +1,4 @@
-using Delegates;
+﻿using Delegates;
 using Delegates.Implementations;
 using Delegates.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -26,12 +26,10 @@ builder.Services.AddSingleton<PubSubCheck>();
 using IHost host = builder.Build();
 var scope = host.Services.CreateScope();
 
-var pubSubCheck = scope.ServiceProvider.GetService<PubSubCheck>();
+var pubSubCheck = scope.ServiceProvider.GetRequiredService<PubSubCheck>();
 await pubSubCheck.CheckInteraction();
 
-var listExtDouble = scope.ServiceProvider.GetService<ListExtensionsUse<double>>();
-var listExtint = scope.ServiceProvider.GetService<ListExtensionsUse<int>>();
+var listExtDouble = scope.ServiceProvider.GetRequiredService<EnumerableExtensionsUse<double>>();
+var listExtint = scope.ServiceProvider.GetRequiredService<EnumerableExtensionsUse<int>>();
 listExtDouble.CheckListMax(doubleList);
 listExtint.CheckListMax(intList);
-
-
