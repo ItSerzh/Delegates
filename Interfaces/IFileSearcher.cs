@@ -11,6 +11,6 @@ namespace Delegates.Interfaces
     public interface IFileSearcher
     {
         event EventHandler<FileArgs> FileFound;
-        void Search(CancellationTokenSource cancellation);
+        void Search(CancellationToken cancellation);
     }
 }

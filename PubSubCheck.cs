@@ -23,10 +23,9 @@ namespace Delegates
                     output.WriteLine("File discovery interrupted.");
                 });
 
-                var task = Task.Run(() => searcher.Search(cts));
+                var task = Task.Run(() => searcher.Search(cts.Token));
 
-                await task;
-                await keyBoardTask;
+                Task.WaitAny(task, keyBoardTask);
             }
         }
     }
