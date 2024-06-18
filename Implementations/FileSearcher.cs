@@ -11,7 +11,7 @@ namespace Delegates.Implementations
 {
     public class FileSearcher(IConfiguration cfg, IOutput output) : IFileSearcher
     {
-        private const string PathName = "Directory_";
+        private const string PathName = "Directory";
         public event EventHandler<FileArgs>? FileFound;
         private readonly string _path = cfg.GetValue<string>(PathName);
         private readonly IOutput _output = output;
