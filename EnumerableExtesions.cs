@@ -9,20 +9,30 @@ namespace Delegates
 {
     public static class EnumerableExtesions
     {
-        public static T? GetMax<T>(this IEnumerable collection, Func<T, IComparable> convertToNumber) where T : class
+        public static T? GetMax<T>(this IEnumerable collection, Func<T, float> convertToNumber) where T : class
         {
             if (collection == null) throw new ArgumentNullException(typeof(T).ToString());
-            
-            var maxVal = default(T);
+
+            var maxVal = float.MinValue;
+            var result = default(T);
             foreach (var item in collection)
             {
-                if (((IComparable)item).CompareTo(maxVal) >= 0)
+                float floatItem;
+                try
                 {
-                    var current = convertToNumber((T)item);
-                    maxVal = (T)current;
+                    floatItem = convertToNumber((T)item);
+                }catch (FormatException)
+                {
+                    return null;
+                }
+
+                if (floatItem > maxVal)
+                {
+                    maxVal = floatItem;
+                    result = (T)item;
                 }
             }
-            return maxVal;
+            return result;
         }
     }
 }

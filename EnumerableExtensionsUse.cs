@@ -1,5 +1,6 @@
 ﻿using Delegates.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,26 +15,19 @@ namespace Delegates
         public void CheckListMax(List<T> list)
         {
             var result = list.GetMax<IComparable>(ToNumber);
-            _output.WriteLine($"For list of type{typeof(T)} max value is {result}");
+            if (result != null)
+            {
+                _output.WriteLine($"For list of type{typeof(T)} max value is {result}");
+            }
+            else
+            {
+                _output.WriteLine($"In list of type{typeof(T)} at least one item is not number");
+            }
         }
 
-        public IComparable ToNumber<T>(T val)
+        public float ToNumber<T>(T val)
         {
-            return Type.GetTypeCode(val.GetType()) switch
-            {
-                TypeCode.Single => Convert.ToSingle(val),
-                TypeCode.SByte => Convert.ToSByte(val),
-                TypeCode.Byte => Convert.ToByte(val),
-                TypeCode.Int16 => Convert.ToInt16(val),
-                TypeCode.UInt16 => Convert.ToUInt16(val),
-                TypeCode.Int32 => Convert.ToInt32(val),
-                TypeCode.UInt32 => Convert.ToUInt32(val),
-                TypeCode.Int64 => Convert.ToInt64(val),
-                TypeCode.UInt64 => Convert.ToUInt64(val),
-                TypeCode.Double => Convert.ToDouble(val),
-                TypeCode.Decimal => Convert.ToDecimal(val),
-                _ => 0,
-            };
+            return Convert.ToSingle(val);
         }
     }
 }
