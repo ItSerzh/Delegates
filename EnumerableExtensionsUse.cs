@@ -14,7 +14,7 @@ namespace Delegates
 
         public void CheckListMax(List<T> list)
         {
-            var result = list.GetMax<IComparable>(ToNumber);
+            var result = list.GetMax<object>(ToNumber);
             if (result != null)
             {
                 _output.WriteLine($"For list of type{typeof(T)} max value is {result}");
