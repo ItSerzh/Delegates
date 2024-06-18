@@ -1,4 +1,4 @@
-﻿using Delegates;
+using Delegates;
 using Delegates.Implementations;
 using Delegates.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -14,8 +14,8 @@ var cfg = new ConfigurationBuilder()
                 .Build();
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddSingleton<ListExtensionsUse<double>>();
-builder.Services.AddSingleton<ListExtensionsUse<int>>();
+builder.Services.AddSingleton<EnumerableExtensionsUse<double>>();
+builder.Services.AddSingleton<EnumerableExtensionsUse<int>>();
 builder.Services.AddSingleton<IConfiguration>(cfg);
 builder.Services.AddSingleton<IFileSearcher, FileSearcher>();
 builder.Services.AddSingleton<IFileSearcherSubscriber, FileSearcherSubscriber>();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Delegates
 {
-    public class ListExtensionsUse<T>(IOutput output)
+    public class EnumerableExtensionsUse<T>(IOutput output)
     {
         private readonly IOutput _output = output;
 
